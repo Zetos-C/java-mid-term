@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
@@ -9,12 +10,16 @@ public class FileModel {
     private String size;
     private boolean isDirectory;
     private FileSystemView fileSystemView;
-    private File[] files;
-
+    private File file;
     public FileModel() {
-        fileSystemView= FileSystemView.getFileSystemView();
-        files = fileSystemView.getRoots();
-
+    }
+    public FileModel(File file, FileSystemView fileSystemView) {
+        this.file = file;
+        this.name = file.getName();
+        this.path = file.getPath();
+        this.size = file.length() + " bytes";
+        this.isDirectory = file.isDirectory();
+        this.fileSystemView = fileSystemView;
     }
 
     public String getName() {
@@ -24,18 +29,15 @@ public class FileModel {
     public String getPath() {
         return path;
     }
+
     public String getSize() {
         return size;
     }
 
-    public  File[] getFiles() {
-        return files;
-    }
-
-    public FileSystemView getFileSystemView() {
-        return fileSystemView;
-    }
     public boolean isDirectory() {
         return isDirectory;
+    }
+    public Icon getSystemIcon() {
+        return fileSystemView.getSystemIcon(file);
     }
 }

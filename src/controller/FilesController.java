@@ -1,29 +1,25 @@
 package controller;
 
 import model.FileModel;
+import model.RootTree;
 import view.FilesView;
-
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import java.io.File;
 
 public class FilesController {
     private FilesView view;
-    private FileModel model;
+    private FileModel file;
+    private RootTree rootTree;
 
-    public FilesController(FilesView view, FileModel model) {
+    public FilesController(FilesView view,RootTree tree, FileModel file) {
         this.view = view;
-        this.model = model;
-        view.getTree().setModel(setTreeModel());
+        this.file = file;
+        this.rootTree = tree;
+        setTreeModel();
         view.getTree().expandRow(0);
     }
 
-    public DefaultTreeModel setTreeModel() {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode();
-        for (File file : model.getFiles()) {
-            DefaultMutableTreeNode node = new DefaultMutableTreeNode(file);
-            root.add(node);
-        }
-        return new DefaultTreeModel(root);
+    public void setTreeModel() {
+        rootTree = new RootTree();
+        rootTree.setRootTree();
+        view.getTree().setModel(rootTree.getTreeModel());
     }
 }
