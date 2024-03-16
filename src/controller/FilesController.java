@@ -1,15 +1,16 @@
 package controller;
 
-import model.FileModel;
-import model.RootTree;
+import model.FileItem;
+import view.FileTreeCellRenderer;
 import view.FilesView;
+import view.RootTree;
 
 public class FilesController {
     private FilesView view;
-    private FileModel file;
+    private FileItem file;
     private RootTree rootTree;
 
-    public FilesController(FilesView view,RootTree tree, FileModel file) {
+    public FilesController(FilesView view,RootTree tree, FileItem file) {
         this.view = view;
         this.file = file;
         this.rootTree = tree;
@@ -21,5 +22,6 @@ public class FilesController {
         rootTree = new RootTree();
         rootTree.setRootTree();
         view.getTree().setModel(rootTree.getTreeModel());
+        view.getTree().setCellRenderer(new FileTreeCellRenderer());
     }
 }

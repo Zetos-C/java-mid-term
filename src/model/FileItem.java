@@ -4,16 +4,16 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
-public class FileModel {
+public class FileItem {
     private String name;
     private String path;
     private String size;
     private boolean isDirectory;
     private FileSystemView fileSystemView;
     private File file;
-    public FileModel() {
+    public FileItem() {
     }
-    public FileModel(File file, FileSystemView fileSystemView) {
+    public FileItem(File file, FileSystemView fileSystemView) {
         this.file = file;
         this.name = file.getName();
         this.path = file.getPath();

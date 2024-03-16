@@ -1,8 +1,8 @@
 package test;
 
 import controller.FilesController;
-import model.FileModel;
-import model.RootTree;
+import model.FileItem;
+import view.RootTree;
 import view.FilesView;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class test {
     public static void main(String[] args) {
         FilesView view= new FilesView();
         RootTree tree = new RootTree();
-        FilesController controller = new FilesController(view,tree,new FileModel());
+        FilesController controller = new FilesController(view,tree,new FileItem());
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception e) {

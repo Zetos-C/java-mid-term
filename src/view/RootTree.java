@@ -1,4 +1,6 @@
-package model;
+package view;
+
+import model.FileItem;
 
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,6 +12,7 @@ public class RootTree {
     private File[] roots;
     private DefaultTreeModel treeModel;
     private DefaultMutableTreeNode root;
+    private FileItem fileItem;
 
     public RootTree() {
         fileSystemView = FileSystemView.getFileSystemView();
