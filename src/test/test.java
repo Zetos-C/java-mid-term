@@ -2,7 +2,7 @@ package test;
 
 import controller.FilesController;
 import model.FileItem;
-import view.RootTree;
+import view.ThisPcTree;
 import view.FilesView;
 
 import javax.swing.*;
@@ -11,7 +11,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 public class test {
     public static void main(String[] args) {
         FilesView view= new FilesView();
-        RootTree tree = new RootTree();
+        ThisPcTree tree = new ThisPcTree();
         FilesController controller = new FilesController(view,tree,new FileItem());
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());

@@ -7,19 +7,22 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.io.File;
 
-public class RootTree {
+public class ThisPcTree {
     private FileSystemView fileSystemView;
     private File[] roots;
     private DefaultTreeModel treeModel;
-    private DefaultMutableTreeNode root;
+    private DefaultMutableTreeNode root = new DefaultMutableTreeNode();
     private FileItem fileItem;
 
-    public RootTree() {
+    public ThisPcTree() {
         fileSystemView = FileSystemView.getFileSystemView();
+        roots = File.listRoots();
         roots = fileSystemView.getRoots();
     }
+    // This method is called to set the root of the tree.
     public void setRootTree() {
-        root = new DefaultMutableTreeNode();
+//        DefaultMutableTreeNode thisPcNode = new DefaultMutableTreeNode("This PC");
+//        root.add(thisPcNode);
         for (File fileSystemRoot : roots) {
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(fileSystemRoot);
             root.add(node);

@@ -16,7 +16,7 @@ public class FileTreeCellRenderer extends DefaultTreeCellRenderer {
         label.setOpaque(true);
         fileSystemView = FileSystemView.getFileSystemView();
     }
-
+    // This method is called by JTree to draw a value.
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
