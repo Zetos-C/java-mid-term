@@ -3,25 +3,25 @@ package controller;
 import model.FileItem;
 import view.FileTreeCellRenderer;
 import view.FilesView;
-import view.ThisPcTree;
+import model.FilesTreeModel;
 
 public class FilesController {
     private FilesView view;
     private FileItem file;
-    private ThisPcTree rootTree;
+    private FilesTreeModel rootTree;
 
-    public FilesController(FilesView view, ThisPcTree tree, FileItem file) {
+    public FilesController(FilesView view, FilesTreeModel tree, FileItem file) {
         this.view = view;
         this.file = file;
         this.rootTree = tree;
-        setTreeModel();
-        view.getTree().expandRow(1);
+//        setTreeModel();
+//        view.getTree().expandRow(0);
     }
 
     public void setTreeModel() {
-        rootTree = new ThisPcTree();
+        rootTree = new FilesTreeModel();
         rootTree.setRootTree();
-        view.getTree().setModel(rootTree.getTreeModel());
+        view.getTree().setModel(rootTree);
         view.getTree().setCellRenderer(new FileTreeCellRenderer());
     }
 }

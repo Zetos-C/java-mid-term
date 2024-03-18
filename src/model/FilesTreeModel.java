@@ -1,22 +1,20 @@
-package view;
-
-import model.FileItem;
+package model;
 
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.io.File;
 
-public class ThisPcTree {
+public class FilesTreeModel extends DefaultTreeModel {
     private FileSystemView fileSystemView;
     private File[] roots;
-    private DefaultTreeModel treeModel;
     private DefaultMutableTreeNode root = new DefaultMutableTreeNode();
     private FileItem fileItem;
 
-    public ThisPcTree() {
+    public FilesTreeModel() {
+        super(new DefaultMutableTreeNode());
         fileSystemView = FileSystemView.getFileSystemView();
-        roots = File.listRoots();
+//        roots = File.listRoots();
         roots = fileSystemView.getRoots();
     }
     // This method is called to set the root of the tree.
@@ -33,9 +31,6 @@ public class ThisPcTree {
                 }
             }
         }
-        treeModel = new DefaultTreeModel(root);
-    }
-    public DefaultTreeModel getTreeModel() {
-        return treeModel;
+        setRoot(root);
     }
 }

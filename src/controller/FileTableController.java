@@ -1,17 +1,40 @@
 package controller;
 
-import model.FileTableModel;
 import view.FileTablePanel;
 
-public class FileTableController {
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class FileTableController implements MouseListener {
     private FileTablePanel fileTablePanel;
-    private FileTableModel fileTableModel;
-    public FileTableController(){
+
+    public FileTableController() {
         fileTablePanel = new FileTablePanel();
-        fileTableModel = new FileTableModel();
+
     }
-    private void displayFilesInFolder(){
-        fileTableModel.reset();
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }

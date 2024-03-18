@@ -10,12 +10,15 @@ public class FilesView extends JFrame {
     private JTree tree;
     private JTable fileTable;
     private JScrollPane fileTableScroll;
+    private JPanel fileTreePanel;
 
-    public FilesView() {
+    public FilesView(FileTreePanel fileTreePanel, FileTablePanel fileTablePanel) {
         tree = new JTree();
         treeScroll = new JScrollPane(tree);
         tree.setRootVisible(false);
-        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treeScroll, new JPanel());
+
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, fileTreePanel, new JPanel());
+//        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treeScroll, new JPanel());
 //        Dimension preferredSize = treeScroll.getPreferredSize();
 //        Dimension widePreferred = new Dimension(200, (int) preferredSize.getHeight());
 //        treeScroll.setPreferredSize(widePreferred);
@@ -51,5 +54,8 @@ public class FilesView extends JFrame {
     }
     public JScrollPane getFileTableScroll() {
         return fileTableScroll;
+    }
+    public void setFileTreePanel(JPanel fileTreePanel) {
+        this.fileTreePanel = fileTreePanel;
     }
 }
