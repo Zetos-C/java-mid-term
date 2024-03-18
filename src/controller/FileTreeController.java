@@ -16,8 +16,13 @@ public class FileTreeController implements TreeSelectionListener {
     public FileTreeController(FileTreePanel treePanel, FilesTreeModel treeModel) {
         this.treePanel = treePanel;
         this.treeModel = treeModel;
-        tree = new JTree();
+        tree = treePanel.getTree();
         updateTree();
+        init();
+    }
+    private void init(){
+        tree.expandRow(0);
+        treePanel.setTree(tree);
     }
 
     public FileTreeController() {

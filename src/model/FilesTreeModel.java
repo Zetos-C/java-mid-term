@@ -17,6 +17,7 @@ public class FilesTreeModel extends DefaultTreeModel {
 //        roots = File.listRoots();
         roots = fileSystemView.getRoots();
     }
+
     // This method is called to set the root of the tree.
     public void setRootTree() {
 //        DefaultMutableTreeNode thisPcNode = new DefaultMutableTreeNode("This PC");
