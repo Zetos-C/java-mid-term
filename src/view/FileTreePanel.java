@@ -11,6 +11,11 @@ public class FileTreePanel extends JPanel {
         scrollPane = new JScrollPane(tree);
         this.add(scrollPane);
         tree.expandRow(0);
+        init();
+    }
+    private void init(){
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(scrollPane);
     }
     public JScrollPane getScrollPane() {
         return scrollPane;

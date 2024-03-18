@@ -27,8 +27,10 @@ public class FileTableModel extends DefaultTableModel {
         setValueAt(fileItem.isDirectory() ? "Folder" : fileItem.getDateModified(), row, 3);
         setValueAt(fileItem.getType(), row, 4);
     }
-    public void displayFiles(File[] files) {
+    public void displayFilesInFolder(File folder) {
         reset();
+        File[] files = folder.listFiles();
+        assert files != null;
         for (File file : files) {
             addRow(file);
         }

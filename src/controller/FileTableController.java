@@ -1,16 +1,31 @@
 package controller;
 
+import model.FileTableModel;
 import view.FileTablePanel;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 public class FileTableController implements MouseListener {
     private FileTablePanel fileTablePanel;
+    private FileTableModel fileTableModel;
+    private JTable fileTable;
 
-    public FileTableController() {
-        fileTablePanel = new FileTablePanel();
-
+    public FileTableController(FileTablePanel fileTablePanel, FileTableModel fileTableModel) {
+        this.fileTablePanel = fileTablePanel;
+        this.fileTableModel = fileTableModel;
+        fileTable = fileTablePanel.getFileTable();
+        init();
+    }
+    private void init(){
+        fileTable.addMouseListener(this);
+    }
+    public void updateTable(String path){
+        fileTableModel.displayFilesInFolder(new File(path));
+        fileTablePanel.repaint();
+        fileTable.setModel(fileTableModel);
     }
 
     @Override

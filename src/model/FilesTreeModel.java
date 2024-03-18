@@ -20,14 +20,15 @@ public class FilesTreeModel extends DefaultTreeModel {
 
     // This method is called to set the root of the tree.
     public void setRootTree() {
-//        DefaultMutableTreeNode thisPcNode = new DefaultMutableTreeNode("This PC");
-//        root.add(thisPcNode);
         for (File fileSystemRoot : roots) {
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(fileSystemRoot);
             root.add(node);
             File[] files = fileSystemView.getFiles(fileSystemRoot, true);
             for (File file : files) {
-                if (file.isDirectory()) {
+                if(fileSystemView.getSystemDisplayName(file).equals("This PC")){
+                    root.add(new DefaultMutableTreeNode(file));
+                }
+                else if (file.isDirectory()) {
                     node.add(new DefaultMutableTreeNode(file));
                 }
             }

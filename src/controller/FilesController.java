@@ -14,8 +14,6 @@ public class FilesController {
         this.view = view;
         this.file = file;
         this.rootTree = tree;
-//        setTreeModel();
-//        view.getTree().expandRow(0);
     }
 
     public void setTreeModel() {

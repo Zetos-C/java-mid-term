@@ -1,8 +1,8 @@
 package test;
 
+import controller.FileTableController;
 import controller.FileTreeController;
-import controller.FilesController;
-import model.FileItem;
+import model.FileTableModel;
 import model.FilesTreeModel;
 import view.FileTablePanel;
 import view.FileTreePanel;
@@ -13,16 +13,15 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class test {
     public static void main(String[] args) {
+        FileTableModel fileTableModel = new FileTableModel();
+        FileTablePanel fileTablePanel = new FileTablePanel();
+        FileTableController tableController = new FileTableController(fileTablePanel,fileTableModel);
 
         FileTreePanel treePanel = new FileTreePanel();
         FilesTreeModel treeModel = new FilesTreeModel();
-        FileTreeController treeController = new FileTreeController(treePanel,treeModel);
+        FileTreeController treeController = new FileTreeController(treePanel,treeModel,tableController);
 
-        FileTablePanel tablePanel = new FileTablePanel();
-
-        FilesView view= new FilesView(treePanel,tablePanel);
-        FilesTreeModel tree = new FilesTreeModel();
-        FilesController controller = new FilesController(view,tree,new FileItem());
+        FilesView view= new FilesView(treePanel,fileTablePanel);
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception e) {
