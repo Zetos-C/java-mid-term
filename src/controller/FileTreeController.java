@@ -25,6 +25,8 @@ public class FileTreeController implements TreeSelectionListener {
     }
     private void init(){
         tree.expandRow(0);
+        tree.expandRow(14);
+        System.out.println(tree.getRowCount());
         tree.addTreeSelectionListener(this);
     }
 
@@ -38,8 +40,13 @@ public class FileTreeController implements TreeSelectionListener {
     }
     @Override
     public void valueChanged(TreeSelectionEvent e) {
-        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-        System.out.println(selectedNode.getUserObject().toString());
-        fileTableController.updateTable(selectedNode.getUserObject().toString());
+        try {
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+            System.out.println(selectedNode.getUserObject().toString());
+            fileTableController.updateTable(selectedNode.getUserObject().toString());
+        }
+        catch (Exception f){
+            System.out.println(f.toString());
+        }
     }
 }

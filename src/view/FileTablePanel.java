@@ -11,6 +11,7 @@ public class FileTablePanel extends JPanel {
         init();
     }
     private void init() {
+        fileTable.setShowGrid(false);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(fileTableScroll);
     }

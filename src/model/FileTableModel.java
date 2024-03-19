@@ -5,11 +5,11 @@ import java.io.File;
 
 public class FileTableModel extends DefaultTableModel {
     public FileTableModel() {
-        super(new Object[]{"Name", "Path", "Size", "Date Modified", "Type"}, 0);
+        super(new Object[]{"Icon","Name", "Date Modified", "Type","Size"}, 0);
     }
     public void addRow(File file) {
         FileItem fileItem = new FileItem(file);
-        addRow(new Object[]{fileItem.getName(), fileItem.getPath(), fileItem.getSize(), fileItem.isDirectory() ? "Folder" : fileItem.getDateModified(), fileItem.getType()});
+        addRow(new Object[]{fileItem.getPath(),fileItem.getName(),fileItem.getDateModified(), fileItem.getType(), fileItem.getSize()});
     }
 
     public void removeRow(int row) {
@@ -21,11 +21,11 @@ public class FileTableModel extends DefaultTableModel {
     }
     public void updateRow(int row, File file) {
         FileItem fileItem = new FileItem(file);
-        setValueAt(fileItem.getName(), row, 0);
-        setValueAt(fileItem.getPath(), row, 1);
-        setValueAt(fileItem.getSize(), row, 2);
-        setValueAt(fileItem.isDirectory() ? "Folder" : fileItem.getDateModified(), row, 3);
-        setValueAt(fileItem.getType(), row, 4);
+        setValueAt(fileItem.getIcon(),row,0);
+        setValueAt(fileItem.getName(), row, 1);
+        setValueAt(fileItem.getDateModified(), row, 2);
+        setValueAt(fileItem.getType(), row, 3);
+        setValueAt(fileItem.getSize(), row, 4);
     }
     public void displayFilesInFolder(File folder) {
         reset();

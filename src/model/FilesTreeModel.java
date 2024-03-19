@@ -26,7 +26,12 @@ public class FilesTreeModel extends DefaultTreeModel {
             File[] files = fileSystemView.getFiles(fileSystemRoot, true);
             for (File file : files) {
                 if(fileSystemView.getSystemDisplayName(file).equals("This PC")){
-                    root.add(new DefaultMutableTreeNode(file));
+                    DefaultMutableTreeNode thisPCNode = new DefaultMutableTreeNode(file);
+                    root.add(thisPCNode);
+                    File[] disks = File.listRoots();
+                    for(File disk: disks) {
+                        thisPCNode.add(new DefaultMutableTreeNode(disk));
+                    }
                 }
                 else if (file.isDirectory()) {
                     node.add(new DefaultMutableTreeNode(file));

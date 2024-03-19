@@ -1,10 +1,12 @@
 package model;
 
+import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class FileItem {
+    private Icon icon;
     private String name;
     private String path;
     private String size;
@@ -50,5 +52,8 @@ public class FileItem {
         this.isDirectory = file.isDirectory();
         return isDirectory;
     }
-
+    public Icon getIcon(){
+        this.icon = fileSystemView.getSystemIcon(file);
+        return icon;
+    }
 }
