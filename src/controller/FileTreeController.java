@@ -14,6 +14,7 @@ public class FileTreeController implements TreeSelectionListener {
     private FilesTreeModel treeModel;
     private JTree tree;
     private FileTableController fileTableController;
+    private String path;
 
     public FileTreeController(FileTreePanel treePanel, FilesTreeModel treeModel,FileTableController fileTableController) {
         this.treePanel = treePanel;
@@ -38,11 +39,23 @@ public class FileTreeController implements TreeSelectionListener {
         tree.setCellRenderer(new FileTreeCellRenderer());
         treeModel.setRootTree();
     }
+    public FileTreePanel getTreePanel() {
+        return treePanel;
+    }
+
+    public JTree getTree() {
+        return tree;
+    }
+    public String getPath(){
+        return path;
+    }
+
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         try {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
             System.out.println(selectedNode.getUserObject().toString());
+            path = selectedNode.getUserObject().toString();
             fileTableController.updateTable(selectedNode.getUserObject().toString());
         }
         catch (Exception f){

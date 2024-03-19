@@ -9,18 +9,23 @@ public class FilesView extends JFrame {
     private JTree tree;
     private JTable fileTable;
     private JPanel fileTreePanel;
+    private ActionPanel actionPanel;
 
-    public FilesView(FileTreePanel fileTreePanel, FileTablePanel fileTablePanel) {
+    public FilesView(ActionPanel actionPanel,FileTreePanel fileTreePanel, FileTablePanel fileTablePanel) {
         tree = new JTree();
+        this.actionPanel = actionPanel;
         this.fileTreePanel = fileTreePanel;
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, fileTreePanel, fileTablePanel);
         init();
     }
 
     private void init() {
+        contentPane.setPreferredSize(new Dimension(1200, 500));
         contentPane.setLayout(new BorderLayout());
         contentPane.add(splitPane, BorderLayout.CENTER);
-        this.setLocationRelativeTo(null);
+        contentPane.add(actionPanel, BorderLayout.NORTH);
+        this.setTitle("File Manager");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(contentPane);
     }
 

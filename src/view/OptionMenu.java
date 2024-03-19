@@ -11,7 +11,7 @@ public class OptionMenu extends JMenu {
     private JMenuItem renameMenuItem;
     private JMenuItem propertiesMenuItem;
     public OptionMenu(){
-        super("Options");
+        init();
     }
     private void init(){
         openMenuItem = new JMenuItem("Open");
