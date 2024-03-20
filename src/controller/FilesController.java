@@ -1,7 +1,7 @@
 package controller;
 
 import model.FileItem;
-import view.FileTreeCellRenderer;
+import view.renderer.FileTreeCellRenderer;
 import view.FilesView;
 import model.FilesTreeModel;
 

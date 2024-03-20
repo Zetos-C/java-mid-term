@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-public class OptionMenu extends JMenu {
+public class OptionMenu extends JPopupMenu {
     private JMenuItem openMenuItem;
     private JMenuItem copyMenuItem;
     private JMenuItem cutMenuItem;
@@ -10,10 +10,12 @@ public class OptionMenu extends JMenu {
     private JMenuItem deleteMenuItem;
     private JMenuItem renameMenuItem;
     private JMenuItem propertiesMenuItem;
-    public OptionMenu(){
+
+    public OptionMenu() {
         init();
     }
-    private void init(){
+
+    private void init() {
         openMenuItem = new JMenuItem("Open");
         copyMenuItem = new JMenuItem("Copy");
         cutMenuItem = new JMenuItem("Cut");
@@ -30,4 +32,31 @@ public class OptionMenu extends JMenu {
         add(propertiesMenuItem);
     }
 
+    public JMenuItem getOpenMenuItem() {
+        return openMenuItem;
+    }
+
+    public JMenuItem getCopyMenuItem() {
+        return copyMenuItem;
+    }
+
+    public JMenuItem getCutMenuItem() {
+        return cutMenuItem;
+    }
+
+    public JMenuItem getPasteManuItem() {
+        return pasteManuItem;
+    }
+
+    public JMenuItem getDeleteMenuItem() {
+        return deleteMenuItem;
+    }
+
+    public JMenuItem getRenameMenuItem() {
+        return renameMenuItem;
+    }
+
+    public JMenuItem getPropertiesMenuItem() {
+        return propertiesMenuItem;
+    }
 }

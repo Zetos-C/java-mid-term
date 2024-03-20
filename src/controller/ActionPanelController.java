@@ -23,7 +23,7 @@ public class ActionPanelController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        path = treeController.getTree().getLastSelectedPathComponent().toString();
+        path = treeController.getPath();
         actionPanel.getPathLabel().setText("Path: " + path);
         if (e.getSource() == actionPanel.getBackButton()) {
             System.out.println("Back");

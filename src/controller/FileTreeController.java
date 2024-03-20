@@ -1,7 +1,7 @@
 package controller;
 
 import model.FilesTreeModel;
-import view.FileTreeCellRenderer;
+import view.renderer.FileTreeCellRenderer;
 import view.FileTreePanel;
 
 import javax.swing.*;
@@ -20,7 +20,10 @@ public class FileTreeController implements TreeSelectionListener {
         this.treePanel = treePanel;
         this.treeModel = treeModel;
         this.fileTableController = fileTableController;
+
         tree = treePanel.getTree();
+
+        path = fileTableController.getPath();
         updateTree();
         init();
     }

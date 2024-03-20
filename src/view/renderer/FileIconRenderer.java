@@ -1,4 +1,4 @@
-package view;
+package view.renderer;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;

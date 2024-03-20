@@ -6,7 +6,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class FileItem {
-    private Icon icon;
     private String name;
     private String path;
     private String size;
@@ -39,7 +38,7 @@ public class FileItem {
     }
 
     public String getDateModified() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm aa");
         this.dateModified = dateFormat.format(file.lastModified());
         return dateModified;
     }
@@ -53,7 +52,7 @@ public class FileItem {
         return isDirectory;
     }
     public Icon getIcon(){
-        this.icon = fileSystemView.getSystemIcon(file);
+        Icon icon = fileSystemView.getSystemIcon(file);
         return icon;
     }
 }

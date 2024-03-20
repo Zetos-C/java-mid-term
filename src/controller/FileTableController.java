@@ -1,7 +1,7 @@
 package controller;
 
 import model.FileTableModel;
-import view.FileIconRenderer;
+import view.renderer.FileIconRenderer;
 import view.FileTablePanel;
 
 import javax.swing.*;
@@ -15,6 +15,7 @@ public class FileTableController implements MouseListener {
     private FileTableModel fileTableModel;
     private JTable fileTable;
     private OptionMenuController optionMenuController;
+    private String path;
 
     public FileTableController(FileTablePanel fileTablePanel, FileTableModel fileTableModel, OptionMenuController optionMenuController) {
         this.fileTablePanel = fileTablePanel;
@@ -45,6 +46,9 @@ public class FileTableController implements MouseListener {
         fileTable.setRowHeight(30);
         fileTablePanel.repaint();
     }
+    public String getPath(){
+        return path;
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -55,7 +59,7 @@ public class FileTableController implements MouseListener {
     public void mousePressed(MouseEvent e) {
         if (e.getButton() ==MouseEvent.BUTTON1 && e.getClickCount() == 2){
             int row = fileTable.rowAtPoint(e.getPoint());
-            String path = fileTable.getValueAt(row,0).toString();
+            path = fileTable.getValueAt(row,0).toString();
             System.out.println(path);
             if(new File(path).isDirectory()){
                 updateTable(path);
@@ -71,7 +75,7 @@ public class FileTableController implements MouseListener {
         }
         else if (e.getButton() == MouseEvent.BUTTON3){
             System.out.println("Right Click");
-            optionMenuController.showMenu();
+            optionMenuController.show(e);
         }
     }
 
