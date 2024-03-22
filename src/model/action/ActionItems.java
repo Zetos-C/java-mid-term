@@ -1,4 +1,6 @@
-package model;
+package model.action;
+
+import model.FileItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -86,7 +88,7 @@ public class ActionItems {
         panel.add(new JLabel("Date modified: " + fileItem.getDateModified()));
         JOptionPane.showMessageDialog(null, panel, "Properties", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    //
     public void updatePath(String newPath) {
         if (!pathTemps.isEmpty()) {
             pathParents.push(pathTemps.pop());

@@ -1,9 +1,14 @@
-package view;
+package view.actionPanel;
 
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/****************************************
+ *  PathTextField Class
+ *  - Custom JTextField class
+ *  - Used to display the current path
+ ****************************************/
 public class PathTextField extends JTextField {
     private String path;
 

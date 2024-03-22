@@ -1,6 +1,6 @@
 package controller;
 
-import model.ActionItems;
+import model.action.ActionItems;
 import view.OptionMenu;
 
 import java.awt.event.ActionEvent;

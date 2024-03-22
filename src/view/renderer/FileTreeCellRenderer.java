@@ -7,6 +7,11 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 import java.io.File;
 
+/***************************************************
+ * This class is the renderer for the file tree.
+ * It is used to render the file tree.
+ * It extends DefaultTreeCellRenderer.
+ **************************************************/
 public class FileTreeCellRenderer extends DefaultTreeCellRenderer {
     private FileSystemView fileSystemView;
     private JLabel label;

@@ -1,10 +1,16 @@
 package controller;
 
-import view.ActionPanel;
+import view.actionPanel.ActionPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*******************************************************
+ * This class is the controller for the action panel.
+ * It listens for the back and forward button clicks
+ * and updates the path text field and the file table
+ * accordingly.
+ *******************************************************/
 public class ActionPanelController implements ActionListener {
     private ActionPanel actionPanel;
     String path;

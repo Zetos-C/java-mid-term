@@ -1,8 +1,15 @@
 package view;
 
+import view.actionPanel.ActionPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
+/*********************************************
+ * This class is the view for the files panel.
+ * It contains the file tree panel, file table
+ * panel and the action panel.
+ ********************************************/
 public class FilesView extends JFrame {
     private JPanel contentPane = new JPanel();
     private JSplitPane splitPane;

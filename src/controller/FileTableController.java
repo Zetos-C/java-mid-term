@@ -1,9 +1,9 @@
 package controller;
 
-import model.ActionItems;
+import model.action.ActionItems;
 import model.FileTableModel;
 import view.FileTablePanel;
-import view.PathTextField;
+import view.actionPanel.PathTextField;
 import view.renderer.FileIconRenderer;
 
 import javax.swing.*;

@@ -5,10 +5,12 @@ import controller.ActionPanelController;
 import controller.FileTableController;
 import controller.FileTreeController;
 import controller.OptionMenuController;
-import model.ActionItems;
+import model.action.ActionItems;
 import model.FileTableModel;
 import model.FilesTreeModel;
 import view.*;
+import view.actionPanel.ActionPanel;
+import view.actionPanel.PathTextField;
 
 import javax.swing.*;
 

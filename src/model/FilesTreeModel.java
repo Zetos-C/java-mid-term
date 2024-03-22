@@ -40,4 +40,15 @@ public class FilesTreeModel extends DefaultTreeModel {
         }
         setRoot(root);
     }
+    public void showChildren(DefaultMutableTreeNode node) {
+        node.removeAllChildren();
+        File file = (File) node.getUserObject();
+        File[] files = fileSystemView.getFiles(file, true);
+        for (File child : files) {
+            if (child.isDirectory()) {
+                DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
+                node.add(childNode);
+            }
+        }
+    }
 }

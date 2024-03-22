@@ -1,17 +1,32 @@
-package view;
+package view.actionPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+/**********************************************
+ * @className ActionPanel
+ * @description ActionPanel class for the ActionPanel
+ * @see javax.swing.JPanel
+ * *******************************************
+ * @methods
+ * 1. init() : void
+ * *******************************************
+ * @properties
+ * 1. forwardButton : JButton
+ * 2. backButton : JButton
+ * 3. searchField : JTextField
+ * 4. pathTextField : PathTextField
+ * *****************************************/
+
 public class ActionPanel extends JPanel {
     private JButton forwardButton;
     private JButton backButton;
     private JTextField searchField;
-    private PathTextField pathLabel;
+    private PathTextField pathTextField;
 
     public ActionPanel(PathTextField pathLabel) {
-        this.pathLabel = pathLabel;
+        this.pathTextField = pathLabel;
         init();
     }
 
@@ -34,7 +49,7 @@ public class ActionPanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         add(backButton);
         add(forwardButton);
-        add(pathLabel);
+        add(pathTextField);
         add(searchField);
     }
 
@@ -47,7 +62,7 @@ public class ActionPanel extends JPanel {
     }
 
     public PathTextField getPathTextField() {
-        return pathLabel;
+        return pathTextField;
     }
 
     public JTextField getSearchField() {

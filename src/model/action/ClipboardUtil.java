@@ -1,4 +1,4 @@
-package model;
+package model.action;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
