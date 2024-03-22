@@ -5,6 +5,7 @@ import controller.ActionPanelController;
 import controller.FileTableController;
 import controller.FileTreeController;
 import controller.OptionMenuController;
+import model.ActionItems;
 import model.FileTableModel;
 import model.FilesTreeModel;
 import view.*;
@@ -18,19 +19,22 @@ public class test {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        PathTextField pathTextField = new PathTextField();
+
+        ActionItems actionItems = new ActionItems();
 
         OptionMenu optionMenu = new OptionMenu();
-        OptionMenuController optionMenuController = new OptionMenuController(optionMenu);
+        OptionMenuController optionMenuController = new OptionMenuController(optionMenu,actionItems);
 
         FileTableModel fileTableModel = new FileTableModel();
         FileTablePanel fileTablePanel = new FileTablePanel();
-        FileTableController tableController = new FileTableController(fileTablePanel,fileTableModel,optionMenuController);
+        FileTableController tableController = new FileTableController(fileTablePanel,fileTableModel,optionMenuController,actionItems, pathTextField);
 
         FileTreePanel treePanel = new FileTreePanel();
         FilesTreeModel treeModel = new FilesTreeModel();
         FileTreeController treeController = new FileTreeController(treePanel,treeModel,tableController);
 
-        ActionPanel actionPanel = new ActionPanel();
+        ActionPanel actionPanel = new ActionPanel(pathTextField);
         ActionPanelController actionPanelController = new ActionPanelController(actionPanel,treeController);
 
         FilesView view= new FilesView(actionPanel,treePanel,fileTablePanel);

@@ -7,22 +7,19 @@ import java.awt.*;
 public class ActionPanel extends JPanel {
     private JButton forwardButton;
     private JButton backButton;
-    private JTextField pathLabel;
     private JTextField searchField;
+    private PathTextField pathLabel;
 
-    public ActionPanel() {
+    public ActionPanel(PathTextField pathLabel) {
+        this.pathLabel = pathLabel;
         init();
     }
 
     private void init() {
-        pathLabel = new JTextField("Path: ");
+
         searchField = new JTextField(20);
         forwardButton = new JButton();
         backButton = new JButton();
-
-        pathLabel.setPreferredSize(new Dimension(200, 35));
-        pathLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        pathLabel.setEditable(false);
 
         searchField.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -49,7 +46,7 @@ public class ActionPanel extends JPanel {
         return backButton;
     }
 
-    public JTextField getPathLabel() {
+    public PathTextField getPathTextField() {
         return pathLabel;
     }
 

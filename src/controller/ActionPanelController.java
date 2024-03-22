@@ -13,6 +13,8 @@ public class ActionPanelController implements ActionListener {
     public ActionPanelController(ActionPanel actionPanel, FileTreeController treeController) {
         this.actionPanel = actionPanel;
         this.treeController = treeController;
+//        actionPanel.getBackButton().setEnabled(false);
+//        actionPanel.getForwardButton().setEnabled(false);
         init();
     }
 
@@ -20,17 +22,31 @@ public class ActionPanelController implements ActionListener {
         actionPanel.getBackButton().addActionListener(this);
         actionPanel.getForwardButton().addActionListener(this);
     }
+    public void updatePathTextField(){
+        treeController.getFileTableController().updatePathTextField();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        path = treeController.getPath();
-        actionPanel.getPathLabel().setText("Path: " + path);
         if (e.getSource() == actionPanel.getBackButton()) {
-            System.out.println("Back");
-            actionPanel.getPathLabel().setText("Path: " + path);
+            String pathParent = treeController.getFileTableController().getActionItems().getPathParent();
+            if (pathParent == null) {
+//                actionPanel.getBackButton().setEnabled(false);
+            } else {
+//                actionPanel.getForwardButton().setEnabled(true);
+                updatePathTextField();
+                treeController.getFileTableController().updateTable(pathParent);
+            }
         }
         if (e.getSource() == actionPanel.getForwardButton()) {
-            System.out.println("Forward");
+            String pathForward = treeController.getFileTableController().getActionItems().getPathChild();
+            if (pathForward == null) {
+//                actionPanel.getForwardButton().setEnabled(false);
+            } else {
+//                actionPanel.getBackButton().setEnabled(true);
+                updatePathTextField();
+                treeController.getFileTableController().updateTable(pathForward);
+            }
         }
     }
 }

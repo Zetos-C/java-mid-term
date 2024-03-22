@@ -52,13 +52,19 @@ public class FileTreeController implements TreeSelectionListener {
     public String getPath(){
         return path;
     }
+    public FileTableController getFileTableController(){
+        return this.fileTableController;
+    }
 
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         try {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-            System.out.println(selectedNode.getUserObject().toString());
             path = selectedNode.getUserObject().toString();
+            String pathTemp = path;
+            fileTableController.getActionItems().setPathFile(path);
+            fileTableController.getActionItems().updatePath(path);
+            fileTableController.updatePathTextField();
             fileTableController.updateTable(selectedNode.getUserObject().toString());
         }
         catch (Exception f){

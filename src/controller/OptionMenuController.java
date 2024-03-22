@@ -1,5 +1,6 @@
 package controller;
 
+import model.ActionItems;
 import view.OptionMenu;
 
 import java.awt.event.ActionEvent;
@@ -8,8 +9,14 @@ import java.awt.event.MouseEvent;
 
 public class OptionMenuController implements ActionListener {
     private OptionMenu optionMenu;
-    public OptionMenuController(OptionMenu optionMenu){
+    private String path;
+    private ActionItems actionItems;
+    public OptionMenuController(OptionMenu optionMenu, ActionItems actionItems){
         this.optionMenu = optionMenu;
+        this.actionItems = actionItems;
+        init();
+    }
+    private void init(){
         this.optionMenu.getOpenMenuItem().addActionListener(this);
         this.optionMenu.getCopyMenuItem().addActionListener(this);
         this.optionMenu.getCutMenuItem().addActionListener(this);
@@ -24,8 +31,8 @@ public class OptionMenuController implements ActionListener {
     public void hideMenu(){
         optionMenu.hide();
     }
-    public void Open(){
-
+    public void setPath(String path){
+        this.path = path;
     }
 
     @Override
@@ -33,10 +40,11 @@ public class OptionMenuController implements ActionListener {
         String command = e.getActionCommand();
         switch (command){
             case "Open":
-                System.out.println("Open");
+                actionItems.openFile();
                 break;
             case "Copy":
                 System.out.println("Copy");
+                actionItems.copyFile(path);
                 break;
             case "Cut":
                 System.out.println("Cut");
@@ -52,6 +60,7 @@ public class OptionMenuController implements ActionListener {
                 break;
             case "Properties":
                 System.out.println("Properties");
+                actionItems.propertiesFile();
                 break;
         }
     }

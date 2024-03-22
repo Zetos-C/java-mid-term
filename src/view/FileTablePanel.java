@@ -12,6 +12,7 @@ public class FileTablePanel extends JPanel {
     }
     private void init() {
         fileTable.setShowGrid(false);
+        fileTableScroll.getVerticalScrollBar().setUnitIncrement(7);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(fileTableScroll);
     }
