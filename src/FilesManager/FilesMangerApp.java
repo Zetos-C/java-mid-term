@@ -1,10 +1,7 @@
-package test;
+package FilesManager;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import controller.ActionPanelController;
-import controller.FileTableController;
-import controller.FileTreeController;
-import controller.OptionMenuController;
+import controller.*;
 import model.action.ActionItems;
 import model.FileTableModel;
 import model.FilesTreeModel;
@@ -14,7 +11,7 @@ import view.actionPanel.PathTextField;
 
 import javax.swing.*;
 
-public class test {
+public class FilesMangerApp {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new FlatMacDarkLaf());
@@ -40,6 +37,7 @@ public class test {
         ActionPanelController actionPanelController = new ActionPanelController(actionPanel,treeController);
 
         FilesView view= new FilesView(actionPanel,treePanel,fileTablePanel);
+        FilesController controller = new FilesController(view,treeModel,actionItems);
 
         view.setVisible(true);
         view.pack();

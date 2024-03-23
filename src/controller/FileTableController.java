@@ -4,12 +4,14 @@ import model.action.ActionItems;
 import model.FileTableModel;
 import view.FileTablePanel;
 import view.actionPanel.PathTextField;
+import view.renderer.FileCenterTextRenderer;
 import view.renderer.FileIconRenderer;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class FileTableController implements MouseListener {
     private FileTablePanel fileTablePanel;
@@ -32,6 +34,8 @@ public class FileTableController implements MouseListener {
 
     private void init() {
         fileTable.addMouseListener(this);
+        fileTable.setModel(fileTableModel);
+        customTable();
     }
 
     public void updateTable(String path) {
@@ -40,8 +44,6 @@ public class FileTableController implements MouseListener {
             public void run() {
                 fileTableModel.displayFilesInFolder(new File(path));
                 fileTablePanel.repaint();
-                fileTable.setModel(fileTableModel);
-                customTable();
             }
         });
         thread.start();
@@ -56,6 +58,7 @@ public class FileTableController implements MouseListener {
         fileTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         fileTable.getColumnModel().getColumn(2).setPreferredWidth(100);
         fileTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+        fileTable.getColumnModel().getColumn(3).setCellRenderer(new FileCenterTextRenderer());
         fileTable.getColumnModel().getColumn(0).setCellRenderer(new FileIconRenderer());
         fileTable.setRowHeight(30);
         fileTablePanel.repaint();
@@ -102,8 +105,14 @@ public class FileTableController implements MouseListener {
             System.out.println("Right Click");
             optionMenuController.show(e);
             int row = fileTable.rowAtPoint(e.getPoint());
-            path = fileTable.getValueAt(row, 0).toString();
-            actionItems.setPathFile(path);
+            int rowSelected = fileTable.getSelectedRowCount();
+            if(rowSelected == 1){
+                path = fileTable.getValueAt(row, 0).toString();
+                actionItems.setPathFile(path);
+            }
+            else {
+                setFilesInActionItems();
+            }
         }
     }
 
@@ -120,5 +129,13 @@ public class FileTableController implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+    private void setFilesInActionItems(){
+        int[] rows = fileTable.getSelectedRows();
+        ArrayList<String> files = new ArrayList<>();
+        for (int row : rows) {
+            files.add(fileTable.getValueAt(row,0).toString());
+        }
+        actionItems.setPathFiles(files);
     }
 }

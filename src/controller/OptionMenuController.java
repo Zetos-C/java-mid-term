@@ -44,16 +44,22 @@ public class OptionMenuController implements ActionListener {
                 break;
             case "Copy":
                 System.out.println("Copy");
-                actionItems.copyFile(path);
+                if(actionItems.getPathFile() != null){
+                    actionItems.copyFile();
+                } else if (actionItems.getPathFiles() != null) {
+                    actionItems.copyFile(actionItems.getPathFiles());
+                }
                 break;
             case "Cut":
                 System.out.println("Cut");
                 break;
             case "Paste":
                 System.out.println("Paste");
+                actionItems.pasteFile();
                 break;
             case "Delete":
                 System.out.println("Delete");
+                actionItems.deleteFile();
                 break;
             case "Rename":
                 System.out.println("Rename");

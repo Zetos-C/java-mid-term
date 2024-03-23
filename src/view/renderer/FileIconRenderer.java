@@ -7,8 +7,8 @@ import java.awt.*;
 import java.io.File;
 /*********************************************
  * This class is a custom cell renderer for the
- * file table. It displays the file icon and
- * the file name.
+   file table. It displays the file icon and
+   the file name.
  ********************************************/
 public class FileIconRenderer extends DefaultTableCellRenderer {
     @Override

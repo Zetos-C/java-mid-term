@@ -40,6 +40,7 @@ public class FilesTreeModel extends DefaultTreeModel {
         }
         setRoot(root);
     }
+    // This method is called to show the children of the selected node.
     public void showChildren(DefaultMutableTreeNode node) {
         node.removeAllChildren();
         File file = (File) node.getUserObject();

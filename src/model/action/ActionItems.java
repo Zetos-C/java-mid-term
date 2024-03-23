@@ -7,18 +7,21 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class ActionItems {
     private Stack<String> pathParents = new Stack<>();
-    private Stack<String> pathTemps = new Stack<>();
+    private Stack<String> pathCurrent = new Stack<>();
     private String pathFile;
+    private String pathFolder;
     private ArrayList<String> pathFiles;
     private Stack<String> pathChilds = new Stack<>();
     private Boolean isCopy = false;
     private Boolean isCut = false;
-    private String test = "test";
 
     public ActionItems() {
 
@@ -33,16 +36,16 @@ public class ActionItems {
         }
     }
 
-    public void copyFile(String pathFile) {
-        this.pathFile = pathFile;
+    public void copyFile() {
+        ClipboardUtil.setFileToSystemClipboard(pathFile);
         isCopy = true;
         isCut = false;
     }
 
+    // Copy multiple files
     public void copyFile(ArrayList<String> pathFiles) {
-        for (String pathFile : pathFiles) {
-            this.pathFiles.add(pathFile);
-        }
+            this.pathFiles = pathFiles;
+            ClipboardUtil.setFilesToSystemClipboard(pathFiles);
     }
 
     public void cutFile(String pathFile) {
@@ -51,16 +54,24 @@ public class ActionItems {
         isCut = true;
     }
 
-    public void pasteFile(String pathChild) {
-        if (isCopy) {
-            // Copy file
-            System.out.println("Copy file");
+    public void pasteFile() {
+        List<File> files = ClipboardUtil.getFilesFromSystemClipboard();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                try {
+                    FileUtils.copyDirectory(file.toPath(), Paths.get(pathCurrent.peek(), file.getName()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    Files.copy(file.toPath(), Paths.get(pathCurrent.peek(), file.getName()), StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        if (isCut) {
-            // Cut file
-            System.out.println("Cut file");
-        }
-    }
+}
 
     public void deleteFile() {
         // Delete file
@@ -71,7 +82,7 @@ public class ActionItems {
         }
     }
 
-    public void renameFile(String pathFile) {
+    public void renameFile() {
         // Rename file
     }
 
@@ -90,10 +101,10 @@ public class ActionItems {
     }
     //
     public void updatePath(String newPath) {
-        if (!pathTemps.isEmpty()) {
-            pathParents.push(pathTemps.pop());
+        if (!pathCurrent.isEmpty()) {
+            pathParents.push(pathCurrent.pop());
         }
-        pathTemps.push(newPath);
+        pathCurrent.push(newPath);
         pathChilds.clear();
     }
 
@@ -101,8 +112,8 @@ public class ActionItems {
         if (pathParents.isEmpty()) {
             return null; // or throw an exception
         }
-        pathChilds.push(pathTemps.pop());
-        pathTemps.push(pathParents.peek());
+        pathChilds.push(pathCurrent.pop());
+        pathCurrent.push(pathParents.peek());
         return pathParents.pop();
     }
 
@@ -110,17 +121,17 @@ public class ActionItems {
         if (pathChilds.isEmpty()) {
             return null; // or throw an exception
         }
-        pathParents.push(pathTemps.pop());
-        pathTemps.push(pathChilds.peek());
+        pathParents.push(pathCurrent.pop());
+        pathCurrent.push(pathChilds.peek());
         return pathChilds.pop();
     }
     public String getPathCurrent() {
-        return pathTemps.peek();
+        return pathCurrent.peek();
     }
 
     public void setPathParent(String newPathParent) {
-        pathParents.push(pathTemps.pop());
-        pathTemps.push(newPathParent);
+        pathParents.push(pathCurrent.pop());
+        pathCurrent.push(newPathParent);
         pathChilds.clear();
     }
 
@@ -140,6 +151,14 @@ public class ActionItems {
     }
 
     public void setPathFile(String pathFile) {
+        this.pathFiles = null;
         this.pathFile = pathFile;
+    }
+    public ArrayList<String> getPathFiles() {
+        return pathFiles;
+    }
+    public void setPathFiles(ArrayList<String> pathFiles) {
+        this.pathFile = null;
+        this.pathFiles = pathFiles;
     }
 }

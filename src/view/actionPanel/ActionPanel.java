@@ -43,14 +43,28 @@ public class ActionPanel extends JPanel {
         backButton.setPreferredSize(new Dimension(30, 30));
         backButton.setMinimumSize(new Dimension(30, 30));
 
+        forwardButton.setPreferredSize(new Dimension(30, 30));
         forwardButton.setMinimumSize(new Dimension(30, 30));
         forwardButton.setIcon(new ImageIcon("src/Resource/ActionPanel/right-arrow.png"));
 
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        add(backButton);
-        add(forwardButton);
-        add(pathTextField);
-        add(searchField);
+        GridBagLayout gridBagLayout = new GridBagLayout();
+        this.setLayout(gridBagLayout);
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(backButton, gbc);
+
+        gbc.gridx = 1;
+        this.add(forwardButton, gbc);
+
+        gbc.gridx = 2;
+        this.add(pathTextField, gbc);
+
+        gbc.gridx = 3;
+        this.add(searchField, gbc);
     }
 
     public JButton getForwardButton() {
