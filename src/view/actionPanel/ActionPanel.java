@@ -27,12 +27,13 @@ public class ActionPanel extends JPanel {
 
     public ActionPanel(PathTextField pathLabel) {
         this.pathTextField = pathLabel;
+        this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         init();
     }
 
     private void init() {
 
-        searchField = new JTextField(20);
+        searchField = new JTextField(30);
         forwardButton = new JButton();
         backButton = new JButton();
 
@@ -55,15 +56,21 @@ public class ActionPanel extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.LINE_START; // Align components to the left
         this.add(backButton, gbc);
 
         gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.LINE_START; // Align components to the left
         this.add(forwardButton, gbc);
 
         gbc.gridx = 2;
+        gbc.weightx = 1.0; // Allow pathTextField to resize horizontally
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Fill horizontally
         this.add(pathTextField, gbc);
 
         gbc.gridx = 3;
+        gbc.weightx = 0; // Prevent searchField from resizing horizontally
+        gbc.fill = GridBagConstraints.NONE; // Do not fill
         this.add(searchField, gbc);
     }
 

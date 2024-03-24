@@ -26,8 +26,9 @@ public class FileTableModel extends DefaultTableModel {
         setValueAt(fileItem.getType(), row, 2);
         setValueAt(fileItem.getSize(), row, 3);
     }
-    public void displayFilesInFolder(File folder) {
+    public void displayFilesInFolder(String pathFolder) {
         reset();
+        File folder = new File(pathFolder);
         File[] files = folder.listFiles();
         assert files != null;
         for (File file : files) {

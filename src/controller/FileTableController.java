@@ -42,7 +42,7 @@ public class FileTableController implements MouseListener {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                fileTableModel.displayFilesInFolder(new File(path));
+                fileTableModel.displayFilesInFolder(path);
                 fileTablePanel.repaint();
             }
         });

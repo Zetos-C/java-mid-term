@@ -18,25 +18,27 @@ public class FilesMangerApp {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        PathTextField pathTextField = new PathTextField();
 
-        ActionItems actionItems = new ActionItems();
-
-        OptionMenu optionMenu = new OptionMenu();
-        OptionMenuController optionMenuController = new OptionMenuController(optionMenu,actionItems);
-
+        //Model
         FileTableModel fileTableModel = new FileTableModel();
-        FileTablePanel fileTablePanel = new FileTablePanel();
-        FileTableController tableController = new FileTableController(fileTablePanel,fileTableModel,optionMenuController,actionItems, pathTextField);
-
-        FileTreePanel treePanel = new FileTreePanel();
         FilesTreeModel treeModel = new FilesTreeModel();
-        FileTreeController treeController = new FileTreeController(treePanel,treeModel,tableController);
 
+        //Vỉew
+        FileTablePanel fileTablePanel = new FileTablePanel();
+        FileTreePanel treePanel = new FileTreePanel();
+        PathTextField pathTextField = new PathTextField();
         ActionPanel actionPanel = new ActionPanel(pathTextField);
-        ActionPanelController actionPanelController = new ActionPanelController(actionPanel,treeController);
-
+        OptionMenu optionMenu = new OptionMenu();
         FilesView view= new FilesView(actionPanel,treePanel,fileTablePanel);
+
+        //Items
+        ActionItems actionItems = new ActionItems(fileTableModel);
+
+        //Controller
+        OptionMenuController optionMenuController = new OptionMenuController(optionMenu,actionItems);
+        FileTableController tableController = new FileTableController(fileTablePanel,fileTableModel,optionMenuController,actionItems, pathTextField);
+        FileTreeController treeController = new FileTreeController(treePanel,treeModel,tableController);
+        ActionPanelController actionPanelController = new ActionPanelController(actionPanel,treeController);
         FilesController controller = new FilesController(view,treeModel,actionItems);
 
         view.setVisible(true);

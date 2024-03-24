@@ -1,6 +1,7 @@
 package model.action;
 
 import model.FileItem;
+import model.FileTableModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +21,12 @@ public class ActionItems {
     private String pathFolder;
     private ArrayList<String> pathFiles;
     private Stack<String> pathChilds = new Stack<>();
+    private FileTableModel fileTableModel;
     private Boolean isCopy = false;
     private Boolean isCut = false;
 
-    public ActionItems() {
+    public ActionItems(FileTableModel fileTableModel) {
+        this.fileTableModel = fileTableModel;
 
     }
 
@@ -44,8 +47,8 @@ public class ActionItems {
 
     // Copy multiple files
     public void copyFile(ArrayList<String> pathFiles) {
-            this.pathFiles = pathFiles;
-            ClipboardUtil.setFilesToSystemClipboard(pathFiles);
+        this.pathFiles = pathFiles;
+        ClipboardUtil.setFilesToSystemClipboard(pathFiles);
     }
 
     public void cutFile(String pathFile) {
@@ -60,23 +63,26 @@ public class ActionItems {
             if (file.isDirectory()) {
                 try {
                     FileUtils.copyDirectory(file.toPath(), Paths.get(pathCurrent.peek(), file.getName()));
+                    reloadTable();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
                     Files.copy(file.toPath(), Paths.get(pathCurrent.peek(), file.getName()), StandardCopyOption.REPLACE_EXISTING);
+                    reloadTable();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
-}
+    }
 
     public void deleteFile() {
         // Delete file
         try {
             Files.delete(new File(pathFile).toPath());
+            reloadTable();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -99,6 +105,7 @@ public class ActionItems {
         panel.add(new JLabel("Date modified: " + fileItem.getDateModified()));
         JOptionPane.showMessageDialog(null, panel, "Properties", JOptionPane.INFORMATION_MESSAGE);
     }
+
     //
     public void updatePath(String newPath) {
         if (!pathCurrent.isEmpty()) {
@@ -125,6 +132,7 @@ public class ActionItems {
         pathCurrent.push(pathChilds.peek());
         return pathChilds.pop();
     }
+
     public String getPathCurrent() {
         return pathCurrent.peek();
     }
@@ -154,11 +162,30 @@ public class ActionItems {
         this.pathFiles = null;
         this.pathFile = pathFile;
     }
+
     public ArrayList<String> getPathFiles() {
         return pathFiles;
     }
+
     public void setPathFiles(ArrayList<String> pathFiles) {
         this.pathFile = null;
         this.pathFiles = pathFiles;
+    }
+
+    public void reloadTable() {
+        fileTableModel.displayFilesInFolder(pathCurrent.peek());
+    }
+
+    public boolean isExistFile(File file) {
+        return file.exists();
+    }
+
+    public int showDialogIfFileExist() {
+        int dialogResult = JOptionPane.showConfirmDialog(null, "File already exists. Do you want to replace it?", "Warning", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
