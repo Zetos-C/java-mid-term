@@ -22,7 +22,7 @@ import java.awt.*;
 public class ActionPanel extends JPanel {
     private JButton forwardButton;
     private JButton backButton;
-    private JButton refeshButton;
+    private JButton refreshButton;
     private JTextField searchField;
     private PathTextField pathTextField;
 
@@ -37,7 +37,7 @@ public class ActionPanel extends JPanel {
         searchField = new JTextField(30);
         forwardButton = new JButton();
         backButton = new JButton();
-        refeshButton = new JButton();
+        refreshButton = new JButton();
 
         searchField.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -50,8 +50,8 @@ public class ActionPanel extends JPanel {
         forwardButton.setMinimumSize(new Dimension(30, 30));
         forwardButton.setIcon(new ImageIcon("src/Resource/ActionPanel/right-arrow.png"));
 
-        refeshButton.setPreferredSize(new Dimension(30, 30));
-        refeshButton.setMinimumSize(new Dimension(30, 30));
+        refreshButton.setPreferredSize(new Dimension(30, 30));
+        refreshButton.setMinimumSize(new Dimension(30, 30));
 
         GridBagLayout gridBagLayout = new GridBagLayout();
         this.setLayout(gridBagLayout);
@@ -70,7 +70,7 @@ public class ActionPanel extends JPanel {
 
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.LINE_START; // Align components to the left
-        this.add(refeshButton, gbc);
+        this.add(refreshButton, gbc);
 
         gbc.gridx = 3;
         gbc.weightx = 1.0; // Allow pathTextField to resize horizontally
@@ -91,8 +91,8 @@ public class ActionPanel extends JPanel {
         return backButton;
     }
 
-    public JButton getRefeshButton() {
-        return refeshButton;
+    public JButton getRefreshButton() {
+        return refreshButton;
     }
 
     public PathTextField getPathTextField() {

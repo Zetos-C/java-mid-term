@@ -90,6 +90,7 @@ public class ActionItems {
     public void cutFile() {
         isCopy = false;
         isCut = true;
+        ClipboardUtil.setFileToSystemClipboard(pathFile);
     }
 
     public void cutFile(ArrayList<String> pathFiles) {

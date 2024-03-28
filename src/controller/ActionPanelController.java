@@ -30,7 +30,7 @@ public class ActionPanelController implements ActionListener, DocumentListener {
         actionPanel.getBackButton().addActionListener(this);
         actionPanel.getForwardButton().addActionListener(this);
         actionPanel.getSearchField().getDocument().addDocumentListener(this);
-        actionPanel.getRefeshButton().addActionListener(this);
+        actionPanel.getRefreshButton().addActionListener(this);
     }
     public void updatePathTextField(){
         treeController.getFileTableController().updatePathTextField();
@@ -58,7 +58,7 @@ public class ActionPanelController implements ActionListener, DocumentListener {
                 treeController.getFileTableController().updateTable(pathForward);
             }
         }
-        if (e.getSource() == actionPanel.getRefeshButton()){
+        if (e.getSource() == actionPanel.getRefreshButton()){
             treeController.getFileTableController().getActionItems().reloadTable();
         }
     }

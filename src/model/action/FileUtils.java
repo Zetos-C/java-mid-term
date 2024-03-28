@@ -2,7 +2,10 @@ package model.action;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
 
 public class FileUtils {
 
@@ -22,6 +25,7 @@ public class FileUtils {
 
     public static void deleteDirectory(Path path) throws IOException {
         Files.walk(path)
+                .sorted(Comparator.reverseOrder())
                 .forEach(p -> {
                     try {
                         Files.delete(p);

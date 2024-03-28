@@ -28,6 +28,8 @@ public class OptionMenuController implements ActionListener {
         this.optionMenu.getNewFileMenuItem().addActionListener(this);
     }
     public void show(MouseEvent e){
+//        optionMenu.removeAll();
+
         optionMenu.show(e.getComponent(),e.getX(),e.getY());
     }
     public void hideMenu(){
