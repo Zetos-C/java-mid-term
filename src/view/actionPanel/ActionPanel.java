@@ -22,6 +22,7 @@ import java.awt.*;
 public class ActionPanel extends JPanel {
     private JButton forwardButton;
     private JButton backButton;
+    private JButton refeshButton;
     private JTextField searchField;
     private PathTextField pathTextField;
 
@@ -36,6 +37,7 @@ public class ActionPanel extends JPanel {
         searchField = new JTextField(30);
         forwardButton = new JButton();
         backButton = new JButton();
+        refeshButton = new JButton();
 
         searchField.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -47,6 +49,9 @@ public class ActionPanel extends JPanel {
         forwardButton.setPreferredSize(new Dimension(30, 30));
         forwardButton.setMinimumSize(new Dimension(30, 30));
         forwardButton.setIcon(new ImageIcon("src/Resource/ActionPanel/right-arrow.png"));
+
+        refeshButton.setPreferredSize(new Dimension(30, 30));
+        refeshButton.setMinimumSize(new Dimension(30, 30));
 
         GridBagLayout gridBagLayout = new GridBagLayout();
         this.setLayout(gridBagLayout);
@@ -64,11 +69,15 @@ public class ActionPanel extends JPanel {
         this.add(forwardButton, gbc);
 
         gbc.gridx = 2;
+        gbc.anchor = GridBagConstraints.LINE_START; // Align components to the left
+        this.add(refeshButton, gbc);
+
+        gbc.gridx = 3;
         gbc.weightx = 1.0; // Allow pathTextField to resize horizontally
         gbc.fill = GridBagConstraints.HORIZONTAL; // Fill horizontally
         this.add(pathTextField, gbc);
 
-        gbc.gridx = 3;
+        gbc.gridx = 4;
         gbc.weightx = 0; // Prevent searchField from resizing horizontally
         gbc.fill = GridBagConstraints.NONE; // Do not fill
         this.add(searchField, gbc);
@@ -80,6 +89,10 @@ public class ActionPanel extends JPanel {
 
     public JButton getBackButton() {
         return backButton;
+    }
+
+    public JButton getRefeshButton() {
+        return refeshButton;
     }
 
     public PathTextField getPathTextField() {

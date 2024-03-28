@@ -32,7 +32,7 @@ public class FilesMangerApp {
         FilesView view= new FilesView(actionPanel,treePanel,fileTablePanel);
 
         //Items
-        ActionItems actionItems = new ActionItems(fileTableModel);
+        ActionItems actionItems = new ActionItems(fileTableModel,actionPanel);
 
         //Controller
         OptionMenuController optionMenuController = new OptionMenuController(optionMenu,actionItems);

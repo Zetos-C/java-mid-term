@@ -34,6 +34,7 @@ public class FileTableController implements MouseListener {
 
     private void init() {
         fileTable.addMouseListener(this);
+        fileTablePanel.getFileTableScroll().addMouseListener(this);
         fileTable.setModel(fileTableModel);
         customTable();
     }
@@ -78,10 +79,6 @@ public class FileTableController implements MouseListener {
         pathTextField.setPath(actionItems.getPathCurrent());
     }
 
-    public void setActionItems(ActionItems actionItems) {
-        this.actionItems = actionItems;
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -89,7 +86,7 @@ public class FileTableController implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
+        if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2&&e.getSource()==fileTable) {
             int row = fileTable.rowAtPoint(e.getPoint());
             path = fileTable.getValueAt(row, 0).toString();
             actionItems.setPathFile(path);

@@ -29,7 +29,7 @@ public class FileTreeController implements TreeSelectionListener {
     }
     private void init(){
         tree.expandRow(0);
-        tree.expandRow(14);
+        tree.expandRow(12);
         System.out.println(tree.getRowCount());
         tree.addTreeSelectionListener(this);
     }
@@ -61,7 +61,6 @@ public class FileTreeController implements TreeSelectionListener {
         try {
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
             path = selectedNode.getUserObject().toString();
-            String pathTemp = path;
             fileTableController.getActionItems().setPathFile(path);
             fileTableController.getActionItems().updatePath(path);
             fileTableController.updatePathTextField();

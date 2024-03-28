@@ -19,6 +19,12 @@ public class FilesController implements ActionListener {
     public FilesController(FilesView view, FilesTreeModel tree, ActionItems actionItems) {
         this.view = view;
         this.rootTree = tree;
+        view.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                actionItems.saveState();
+                System.exit(0);
+            }
+        });
     }
     private void setKeyBindings() {
         view.getTree().getInputMap().put(KeyStroke.getKeyStroke("F2"), "rename");
@@ -64,7 +70,7 @@ public class FilesController implements ActionListener {
         } else if (e.getActionCommand().equals("Copy")) {
 //            actionItems.copyFile(file.getPath());
         } else if (e.getActionCommand().equals("Cut")) {
-            actionItems.cutFile(file.getPath());
+            actionItems.cutFile();
         } else if (e.getActionCommand().equals("Paste")) {
             actionItems.pasteFile();
         } else if (e.getActionCommand().equals("Delete")) {

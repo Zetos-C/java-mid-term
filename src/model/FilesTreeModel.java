@@ -10,6 +10,7 @@ public class FilesTreeModel extends DefaultTreeModel {
     private File[] roots;
     private DefaultMutableTreeNode root = new DefaultMutableTreeNode();
     private FileItem fileItem;
+    private int thisPCRow;
 
     public FilesTreeModel() {
         super(new DefaultMutableTreeNode());
@@ -24,7 +25,9 @@ public class FilesTreeModel extends DefaultTreeModel {
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(fileSystemRoot);
             root.add(node);
             File[] files = fileSystemView.getFiles(fileSystemRoot, true);
+            int condition = 1;
             for (File file : files) {
+                condition++;
                 if(fileSystemView.getSystemDisplayName(file).equals("This PC")){
                     DefaultMutableTreeNode thisPCNode = new DefaultMutableTreeNode(file);
                     root.add(thisPCNode);
@@ -37,10 +40,16 @@ public class FilesTreeModel extends DefaultTreeModel {
                     node.add(new DefaultMutableTreeNode(file));
                 }
             }
+            thisPCRow = condition;
+            System.out.println("This PC: " + thisPCRow);
         }
         setRoot(root);
     }
     // This method is called to show the children of the selected node.
+    private boolean checkThisPC(File file){
+        return fileSystemView.getSystemDisplayName(file).equals("This PC");
+
+    }
     public void showChildren(DefaultMutableTreeNode node) {
         node.removeAllChildren();
         File file = (File) node.getUserObject();
@@ -51,5 +60,8 @@ public class FilesTreeModel extends DefaultTreeModel {
                 node.add(childNode);
             }
         }
+    }
+    public int getThisPCRow(){
+        return thisPCRow;
     }
 }

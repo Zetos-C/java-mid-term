@@ -9,6 +9,9 @@ public class OptionMenu extends JPopupMenu {
     private JMenuItem pasteManuItem;
     private JMenuItem deleteMenuItem;
     private JMenuItem renameMenuItem;
+    private JMenu newMenu;
+    private JMenuItem newFolderMenuItem;
+    private JMenuItem newFileMenuItem;
     private JMenuItem propertiesMenuItem;
 
     public OptionMenu() {
@@ -22,13 +25,21 @@ public class OptionMenu extends JPopupMenu {
         pasteManuItem = new JMenuItem("Paste");
         deleteMenuItem = new JMenuItem("Delete");
         renameMenuItem = new JMenuItem("Rename");
+        newMenu = new JMenu("New");
         propertiesMenuItem = new JMenuItem("Properties");
+
+        newFolderMenuItem = new JMenuItem("Folder");
+        newFileMenuItem = new JMenuItem("File");
+        newMenu.add(newFolderMenuItem);
+        newMenu.add(newFileMenuItem);
+
         add(openMenuItem);
         add(copyMenuItem);
         add(cutMenuItem);
         add(pasteManuItem);
         add(deleteMenuItem);
         add(renameMenuItem);
+        add(newMenu);
         add(propertiesMenuItem);
     }
 
@@ -58,5 +69,13 @@ public class OptionMenu extends JPopupMenu {
 
     public JMenuItem getPropertiesMenuItem() {
         return propertiesMenuItem;
+    }
+
+    public JMenuItem getNewFolderMenuItem() {
+        return newFolderMenuItem;
+    }
+
+    public JMenuItem getNewFileMenuItem() {
+        return newFileMenuItem;
     }
 }

@@ -24,6 +24,8 @@ public class OptionMenuController implements ActionListener {
         this.optionMenu.getDeleteMenuItem().addActionListener(this);
         this.optionMenu.getRenameMenuItem().addActionListener(this);
         this.optionMenu.getPropertiesMenuItem().addActionListener(this);
+        this.optionMenu.getNewFolderMenuItem().addActionListener(this);
+        this.optionMenu.getNewFileMenuItem().addActionListener(this);
     }
     public void show(MouseEvent e){
         optionMenu.show(e.getComponent(),e.getX(),e.getY());
@@ -43,7 +45,6 @@ public class OptionMenuController implements ActionListener {
                 actionItems.openFile();
                 break;
             case "Copy":
-                System.out.println("Copy");
                 if(actionItems.getPathFile() != null){
                     actionItems.copyFile();
                 } else if (actionItems.getPathFiles() != null) {
@@ -51,22 +52,29 @@ public class OptionMenuController implements ActionListener {
                 }
                 break;
             case "Cut":
-                System.out.println("Cut");
+                if(actionItems.getPathFile() != null){
+                    actionItems.cutFile();
+                } else if (actionItems.getPathFiles() != null) {
+                    actionItems.cutFile(actionItems.getPathFiles());
+                }
                 break;
             case "Paste":
-                System.out.println("Paste");
                 actionItems.pasteFile();
                 break;
             case "Delete":
-                System.out.println("Delete");
                 actionItems.deleteFile();
                 break;
             case "Rename":
-                System.out.println("Rename");
+                actionItems.renameFile();
                 break;
             case "Properties":
-                System.out.println("Properties");
                 actionItems.propertiesFile();
+                break;
+            case "Folder":
+                actionItems.newFolder();
+                break;
+            case "File":
+                actionItems.newFile();
                 break;
         }
     }

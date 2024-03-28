@@ -19,6 +19,9 @@ public class FileTablePanel extends JPanel {
     public JTable getFileTable() {
         return fileTable;
     }
+    public JScrollPane getFileTableScroll() {
+        return fileTableScroll;
+    }
     public void setFileTable(JTable fileTable) {
         this.fileTable = fileTable;
     }
