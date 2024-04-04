@@ -99,7 +99,8 @@ public class ActionItems {
         isCut = true;
         ClipboardUtil.setFilesToSystemClipboard(pathFiles);
     }
-    public void actionPasteFile(File file){
+
+    public void actionPasteFile(File file) {
         if (file.isDirectory()) {
             try {
                 FileUtils.copyDirectory(file.toPath(), Paths.get(pathCurrent.peek(), file.getName()));
@@ -129,16 +130,13 @@ public class ActionItems {
     public void pasteFile() {
         List<File> files = ClipboardUtil.getFilesFromSystemClipboard();
         for (File file : files) {
-            if (!isExistFile(file)) {
+            if (isExistFile(file)) {
                 int choice = showDialogIfFileExist();
                 if (choice == 0) {
                     return;
-                } else if (choice == 1) {
-                    actionPasteFile(file);
                 }
-            } else {
-                actionPasteFile(file);
             }
+            actionPasteFile(file);
         }
     }
 
@@ -195,6 +193,7 @@ public class ActionItems {
     public void searchFile(String search) {
         fileTableModel.displayFilesSearch(pathCurrent.peek(), search);
     }
+
 
     //
     public void updatePath(String newPath) {

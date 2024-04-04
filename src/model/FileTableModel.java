@@ -65,7 +65,7 @@ public class FileTableModel extends DefaultTableModel {
                             try {
                                 addRow(file);
                             } catch (Exception e) {
-                                System.out.println("Can't add row");
+                                System.err.println("Can't add row");
                             }
                         }
                         if (file.isDirectory()) {
@@ -74,13 +74,12 @@ public class FileTableModel extends DefaultTableModel {
                         try {
                             Thread.sleep(200);
                         } catch (InterruptedException e) {
-                            System.out.println("Thread interrupted");
-                            e.printStackTrace();
+                            System.err.println("Thread interrupted");
                             return;
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("Can't display files");
+                    System.err.println("Can't display files");
                 }
             }
         });

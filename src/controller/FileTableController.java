@@ -34,7 +34,7 @@ public class FileTableController implements MouseListener {
 
     private void init() {
         fileTable.addMouseListener(this);
-        fileTablePanel.getFileTableScroll().addMouseListener(this);
+//        fileTablePanel.getFileTableScroll().addMouseListener(this);
         fileTable.setModel(fileTableModel);
         customTable();
     }
